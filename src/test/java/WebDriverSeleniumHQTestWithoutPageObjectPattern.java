@@ -25,6 +25,7 @@ public class WebDriverSeleniumHQTestWithoutPageObjectPattern {
     @BeforeMethod(alwaysRun = true)
     public void browserSetup() {
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
     }
 
 

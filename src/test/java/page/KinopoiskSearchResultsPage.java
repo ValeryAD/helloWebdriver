@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 import java.util.function.Function;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class KinopoiskSearchResultsPage extends AbstractPage {
 
@@ -19,6 +21,12 @@ public class KinopoiskSearchResultsPage extends AbstractPage {
     public KinopoiskSearchResultsPage(WebDriver driver, String term){
         super(driver);
         this.term = term;
+    }
+
+    public String getSearchResultsHeaderText(){
+        return new WebDriverWait(driver, 15)
+            .until(ExpectedConditions.presenceOfElementLocated(By
+                .xpath("//div[@class='search_results'][1]/p"))).getText();
     }
 
     @Override

@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 import page.KinopoiskHomePage;
 
 import java.util.List;
+import page.KinopoiskSearchResultsPage;
 
 public class WebDriverSeleniumHQTest {
 
@@ -36,10 +37,21 @@ public class WebDriverSeleniumHQTest {
         Assert.assertTrue(expectedSearchResultsNumber > 0, "Search results are empty");
     }
 
+    @Test(description = "Header of search should be printed")
+    public void checkHeaderOfSearchResults() {
+        String header = new KinopoiskHomePage(driver)
+            .openPage()
+            .searchForTerms("it")
+            .getSearchResultsHeaderText();
+
+        System.out.println(header);
+        Assert.assertFalse(!header.isEmpty(), "Search results are empty");
+    }
+
     @AfterMethod(alwaysRun = true)
     private void browserTearDown() {
-        driver.quit();
-        driver = null;
+        //driver.quit();
+        //driver = null;
     }
 
     private WebElement findElementLocatedBy(By by) {
