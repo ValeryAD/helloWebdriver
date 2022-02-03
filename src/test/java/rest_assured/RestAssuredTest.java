@@ -31,4 +31,42 @@ public class RestAssuredTest {
     response.log().body();
   }
 
+  @Test //making a post request
+  public void postRequest() {
+    String endPoint = "http://Some.end.point";
+    String body = "{"                      //Json string is used here
+        + "\"name\": \"Some Object\","
+        + "\"description\": \"Json string\""
+        + "\"other_fields\": \"some String\""
+        + "}";
+
+    given()
+        .body(body)
+        .when()
+        .post(endPoint)
+        .then()
+        .log()
+        .body();
+  }
+
+  @Test //making a put request
+  //DELETE - almost the same, just need to use delete() instead of put() and most likely the body will be {"id": 15}
+  public void putRequest() {
+    String endPoint = "http://end.point.for.put";
+    String body = "{"                       //Json string is used here
+        + "\"id\": 15"
+        + "\"name\": \"You might change name here\","
+        + "\"description\": \"changes might be here\""
+        + "\"other_fields\": \"changes might be here\""
+        + "}";
+
+    given()
+        .body(body)
+        .when()
+        .put(endPoint)
+        .then()
+        .log()
+        .body();
+  }
+
 }
